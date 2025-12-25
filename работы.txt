@@ -1,0 +1,103 @@
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+
+void clearScreen() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+void drawPlus(int size, char texture) {
+    clearScreen();
+    
+    // Вывод шапки программы
+    cout << "[ 18 ] Самостоятельная работа | E+" << endl;
+    cout << "Тема: [ FOR ]" << endl;
+    cout << "Продолжение программы \"Геометрические фигуры\"." << endl;
+    cout << endl;
+    cout << "[ + ] Программа - \"Геометрические фигуры\"" << endl;
+    cout << "----------------------------------------" << endl << endl;
+    
+    // Информация о выбранной фигуре
+    cout << "[ + ] Фигура: \"Плюс\"" << endl << endl;
+    cout << "[ + ] Размер: \t" << size << endl;
+    cout << "[ + ] Текстура: \t" << texture << endl << endl;
+    cout << "[ + ] Результат:" << endl << endl;
+    
+    // Проверка на нечетность размера для симметричного плюса
+    if (size % 2 == 0) {
+        cout << "Для идеального плюса рекомендуется использовать нечетный размер." << endl;
+        cout << "Текущий размер: " << size << endl << endl;
+    }
+    
+    // Вычисляем середину
+    int middle = size / 2;
+    
+    // Рисуем плюс
+    for (int row = 0; row < size; row++) {
+        for (int col = 0; col < size; col++) {
+            // Вертикальная линия или горизонтальная линия через середину
+            if (col == middle || row == middle) {
+                cout << texture;
+            } else {
+                cout << ".";
+            }
+            
+            // Добавляем пробелы между символами (5 пробелов как в примере)
+            if (col < size - 1) {
+                cout << "     ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    clearScreen();
+    
+    // Главное меню
+    cout << "[ 18 ] Самостоятельная работа | E+" << endl;
+    cout << "Тема: [ FOR ]" << endl;
+    cout << "Продолжение программы \"Геометрические фигуры\"." << endl;
+    cout << endl;
+    cout << "[ + ] Программа - \"Геометрические фигуры\"" << endl;
+    cout << "----------------------------------------" << endl << endl;
+    
+    // Меню выбора фигур
+    cout << "Доступные фигуры:" << endl;
+    for (int i = 1; i <= 5; i++) {
+        cout << "[ " << i << " ] Фигура " << i << endl;
+    }
+    cout << "[ 6 ] Крестик" << endl;
+    cout << "[ 7 ] Плюс" << endl;
+    cout << "[ 0 ] Выход" << endl << endl;
+    
+    int choice;
+    cout << "[ + ] Выберите фигуру: ";
+    cin >> choice;
+    
+    if (choice == 7) {
+        int size;
+        char texture;
+        
+        cout << "[ + ] Размер: \t";
+        cin >> size;
+        
+        cout << "[ + ] Текстура: \t";
+        cin >> texture;
+        
+        drawPlus(size, texture);
+    } else if (choice == 6) {
+        cout << "Фигура 'Крестик' будет реализована позже" << endl;
+    } else if (choice == 0) {
+        cout << "Выход из программы..." << endl;
+    } else {
+        cout << "Фигура №" << choice << " будет реализована позже." << endl;
+    }
+    
+    return 0;
+}
